@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1",
+    "nome": "Alura Cursos",
+    "email": "alura@planum.com",
+    "senha": "123"
+  },
+  {
+    "id": "2",
+    "nome": "Maria Santos",
+    "email": "maria@planum.com",
+    "senha": "123"
+  },
+  {
+    "id": "3",
+    "nome": "Pedro Oliveira",
+    "email": "pedro@planum.com",
+    "senha": "123"
+  }
+]

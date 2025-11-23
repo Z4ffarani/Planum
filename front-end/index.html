@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Planum | Organize Seu Tempo</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <!-- tela de login -->
+        <div id="tela-login" class="tela-login">
+            <div class="login-container">
+                <div class="login-header">
+                    <h1 class="login-logo">PLANUM</h1>
+                    <p class="login-subtitulo">Organize Seu Tempo com Inteligência</p>
+                </div>
+                <form id="login-form" class="login-form">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="login-email" placeholder="seu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" id="login-senha" placeholder="••••••" required>
+                    </div>
+                    <div id="login-error" class="login-error" style="display: none;"></div>
+                    <button type="submit" class="btn-login">Entrar</button>
+                    <p class="login-dica">Use: alura@planum.com | 123</p>
+                </form>
+            </div>
+        </div>
+
+        <!-- aplicacao principal (pós-login) -->
+        <div id="app-container" class="app-container" style="display: none;">
+            <aside class="sidebar closed" id="sidebar">
+                <div class="sidebar-header">
+                    <div class="sidebar-logo">PLANUM</div>
+                    <button id="fechar-chat" class="fechar-chat-btn" title="Fechar chat">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="chat-area custom-scrollbar" id="chat-area">
+                    <div class="message ai">
+                        <div class="avatar">✨</div>
+                        <div class="content">Olá! Sou seu assistente Planum. Posso analisar sua agenda e responder dúvidas sobre suas atividades.</div>
+                    </div>
+                </div>
+                
+                <div class="chat-input-container">
+                    <textarea id="prompt-input" class="chat-textarea custom-scrollbar" placeholder="Peça uma análise..." rows="1"></textarea>
+                    <button id="enviar-btn" class="enviar-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                        </svg>
+                    </button>
+                </div>
+            </aside>
+
+            <!-- conteudo principal -->
+            <main class="conteudo-principal">
+                <header class="top-bar">
+                    <div class="logo-area">
+                        <button id="botao-sidebar" class="icon-btn hamburger-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="3" y1="12" x2="21" y2="12"></line>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <line x1="3" y1="18" x2="21" y2="18"></line>
+                            </svg>
+                        </button>
+                        <div class="logo">PLANUM</div>
+                    </div>
+
+                    <div class="troca-calendario">
+                        <button class="troca-btn active" data-type="profissional">
+                            <span class="troca-texto">Profissional</span>
+                            <svg class="troca-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                            </svg>
+                        </button>
+                        <button class="troca-btn" data-type="pessoal">
+                            <span class="troca-texto">Pessoal</span>
+                            <svg class="troca-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                    <button id="logout-btn" class="logout-btn">
+                        <span id="user-name" class="user-name"></span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
+                        </svg>
+                    </button>
+                </header>
+
+                <!-- calendario -->
+                <div class="calendario-wrapper custom-scrollbar">
+                    <div class="calendario-grid">
+                        <div class="dia-coluna" data-dia="segunda">
+                            <div class="dia-header">Segunda</div>
+                            <div class="dia-conteudo custom-scrollbar"></div>
+                        </div>
+                        <div class="dia-coluna" data-dia="terca">
+                            <div class="dia-header">Terça</div>
+                            <div class="dia-conteudo custom-scrollbar"></div>
+                        </div>
+                        <div class="dia-coluna" data-dia="quarta">
+                            <div class="dia-header">Quarta</div>
+                            <div class="dia-conteudo custom-scrollbar"></div>
+                        </div>
+                        <div class="dia-coluna" data-dia="quinta">
+                            <div class="dia-header">Quinta</div>
+                            <div class="dia-conteudo custom-scrollbar"></div>
+                        </div>
+                        <div class="dia-coluna" data-dia="sexta">
+                            <div class="dia-header">Sexta</div>
+                            <div class="dia-conteudo custom-scrollbar"></div>
+                        </div>
+                        <div class="dia-coluna" data-dia="sabado">
+                            <div class="dia-header">Sábado</div>
+                            <div class="dia-conteudo custom-scrollbar"></div>
+                        </div>
+                        <div class="dia-coluna" data-dia="domingo">
+                            <div class="dia-header">Domingo</div>
+                            <div class="dia-conteudo custom-scrollbar"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="barra-final">
+                    <div class="metodos-container-wrapper">
+                        <div class="metodos-container custom-scrollbar">
+                            <button class="metodo-btn active" data-method="pomodoro">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                                <span>Pomodoro</span>
+                            </button>
+                            <button class="metodo-btn" data-method="eisenhower">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+                                    <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+                                </svg>
+                                <span>Eisenhower</span>
+                            </button>
+                            <button class="metodo-btn" data-method="ivy-lee">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/>
+                                    <line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/>
+                                    <line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>
+                                </svg>
+                                <span>Ivy Lee</span>
+                            </button>
+                            <button class="metodo-btn" data-method="habit-mixing">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+                                </svg>
+                                <span>Habit Mixing</span>
+                            </button>
+                        </div>
+                    </div>
+                    <button id="info-btn" class="info-btn" title="Informações sobre métodos">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/>
+                            <line x1="12" y1="8" x2="12.01" y2="10"/>
+                        </svg>
+                    </button>
+                </footer>
+            </main>
+        </div>
+
+        <!-- modal de atividades -->
+        <div id="atividade-modal" class="modal" style="display: none;">
+            <div class="conteudo-modal">
+                <div class="modal-header">
+                    <h3>Editar Atividade</h3>
+                    <button class="fechar-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Título</label>
+                        <input type="text" id="atividade-titulo" placeholder="Nome da atividade">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Descrição</label>
+                        <textarea id="atividade-descricao" class="custom-scrollbar" placeholder="Detalhes da atividade (opcional)" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Horário</label>
+                        <input type="time" id="atividade-time">
+                    </div>
+                    <div class="form-group">
+                        <label>Complexidade</label>
+                        <div class="botoes-complexidade">
+                            <button type="button" class="botao-complexidade" data-complexidade="baixa">Baixa</button>
+                            <button type="button" class="botao-complexidade" data-complexidade="media">Média</button>
+                            <button type="button" class="botao-complexidade" data-complexidade="alta">Alta</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" id="atividade-concluida" class="botao-confirmacao">
+                            Marcar como concluída
+                        </button>
+                    </div>
+                    <div class="acoes-modal">
+                        <button id="deletar-atividade-btn" class="deletar-btn">Excluir</button>
+                        <button id="salvar-atividade-btn" class="salvar-btn">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal de informacoes -->
+        <div id="info-modal" class="modal" style="display: none;">
+            <div class="conteudo-modal modal-large">
+                <div class="modal-header">
+                    <h3>Métodos de Produtividade</h3>
+                    <button class="fechar-modal info-fechar-modal square-btn">&times;</button>
+                </div>
+                <div class="modal-body custom-scrollbar">
+                    <p class="info-intro">O Planum utiliza diferentes metodologias de produtividade para ajudar você a organizar suas tarefas de forma inteligente.</p>
+                    <div class="info-metodos">
+                        <div class="info-carta-metodos">
+                            <div class="icon-metodo square-icon">⏱️</div>
+                            <div>
+                                <h4>Pomodoro</h4>
+                                <p>Trabalhe em intervalos de 25 minutos com pausas curtas. Timer acoplado em cada tarefa para melhor controle com opção de reset.</p>
+                            </div>
+                        </div>
+                        <div class="info-carta-metodos">
+                            <div class="icon-metodo square-icon">🎯</div>
+                            <div>
+                                <h4>Eisenhower</h4>
+                                <p>Reorganiza tarefas por complexidade/prioridade: alta, média e baixa dificuldade.</p>
+                            </div>
+                        </div>
+                        <div class="info-carta-metodos">
+                            <div class="icon-metodo square-icon">📋</div>
+                            <div>
+                                <h4>Ivy Lee</h4>
+                                <p>Foca nas tarefas mais importantes, permitindo adicionar múltiplas novas atividades por dia.</p>
+                            </div>
+                        </div>
+                        <div class="info-carta-metodos">
+                            <div class="icon-metodo square-icon">🔄</div>
+                            <div>
+                                <h4>Habit Mixing</h4>
+                                <p>Embaralha atividades pessoais existentes para diferentes dias e horários, criando rotinas variadas.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="secao-recursos">
+                        <h4>Recursos do Planum</h4>
+                        <ul>
+                            <li>Detecta conflitos de horário automaticamente entre calendários pessoal e profissional</li>
+                            <li>Assistente IA para análise e sugestões baseadas no JSON de atividades</li>
+                            <li>Visualização adaptativa baseada no método de produtividade selecionado</li>
+                            <li>Drag and drop para reorganização rápida de tarefas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- popup de erro -->
+        <div id="erro-popup" class="erro-popup" style="display: none;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/>
+                <line x1="12" y1="8" x2="12.01" y2="10"/>
+            </svg>
+            <span id="mensagem-erro"></span>
+        </div>
+
+        <script type="module" src="script.js"></script>
+    </body>
+</html>
