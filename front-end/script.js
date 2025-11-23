@@ -552,28 +552,28 @@ function renderizarMensagens() {
 }
 
 async function enviarMensagem() {
-  const input = document.getElementById("prompt-input")
-  const texto = input.value.trim()
-  if (!texto) return
+  const input = document.getElementById("prompt-input");
+  const texto = input.value.trim();
+  if (!texto) return;
 
-  estado.mensagens.push({ role: "user", content: texto })
-  input.value = ""
-  input.style.height = "auto"
-  renderizarMensagens()
+  estado.mensagens.push({ role: "user", content: texto });
+  input.value = "";
+  input.style.height = "auto";
+  renderizarMensagens();
 
-  const botao = document.getElementById("enviar-btn")
-  botao.disabled = true
+  const botao = document.getElementById("enviar-btn");
+  botao.disabled = true;
 
-  const resposta = await responderPergunta(texto)
-  estado.mensagens.push({ role: "ai", content: resposta })
-  renderizarMensagens()
+  const resposta = await responderPergunta(texto);
+  estado.mensagens.push({ role: "ai", content: resposta });
+  renderizarMensagens();
 
-  botao.disabled = false
+  botao.disabled = false;
 }
 
 async function responderPergunta(textoUsuario) {
   try {
-    const res = await fetch("http://localhost:3000/api/perguntar", {
+    const res = await fetch("/api/perguntar", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -583,15 +583,15 @@ async function responderPergunta(textoUsuario) {
     });
 
     if (!res.ok) {
-      console.error("Erro na resposta do servidor:", res.status)
-      return "Erro ao tentar obter resposta do assistente."
+      console.error("Erro na resposta do servidor:", res.status);
+      return "Erro ao tentar obter resposta do assistente.";
     }
 
-    const data = await res.json()
-    return data.resposta || "O assistente não respondeu nada."
+    const data = await res.json();
+    return data.resposta || "O assistente não respondeu nada.";
   } catch (erro) {
-    console.error("Erro ao chamar o assistente:", erro)
-    return "Erro ao tentar obter resposta do assistente."
+    console.error("Erro ao chamar o assistente:", erro);
+    return "Erro ao tentar obter resposta do assistente.";
   }
 }
 
