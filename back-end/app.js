@@ -4,14 +4,12 @@ import { GoogleGenAI } from "@google/genai";
 dotenv.config();
 
 const ai = new GoogleGenAI({
-  apiKey: process.env.GOOGLE_API_KEY
+  apiKey: process.env.GOOGLE_API_KEY,
 });
 
 /**
  * Pergunta ao Gemini usando o JSON de atividades.
  * Retorna o texto gerado de forma objetiva e polida.
- * @param {string} pergunta - Pergunta do usuário
- * @param {object[]} atividades - Array de atividades (estado.atividades)
  */
 export async function perguntarGemini(pergunta, atividades) {
   const prompt = `
@@ -36,12 +34,12 @@ Use frases completas, mas sucintas.
   try {
     const response = await ai.models.generateContent({
       model: "gemini-3-pro-preview",
-      contents: prompt
+      contents: prompt,
     });
 
     return response?.text?.trim() || "Não consegui interpretar a pergunta.";
   } catch (erro) {
     console.error("Erro ao chamar Gemini:", erro);
-    return "Erro ao tentar obter resposta do assistente.";
+    throw new Error("Erro ao tentar obter resposta do assistente.");
   }
 }
