@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { perguntarGemini } = await import("../back-end/app.js");
+    const { perguntarGemini } = await import("./app.js");
     const resposta = await perguntarGemini(pergunta, atividades);
     res.status(200).json({ resposta });
   } catch (err) {
