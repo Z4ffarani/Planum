@@ -1,4 +1,4 @@
-![banner](./assets/banner.png)
+!['banner'](./assets/banner.png)
 
 # SOBRE O PROJETO
 Planum é um protótipo de plataforma de gerenciamento de tarefas, desenvolvido com HTML, CSS e JavaScript. Ele reúne diferentes métodos de produtividade, dois calendários independentes (profissional e pessoal) e um assistente de IA que fornece respostas baseadas nas atividades cadastradas.
