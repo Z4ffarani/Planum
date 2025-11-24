@@ -1,13 +1,13 @@
 !['banner'](./assets/banner.png)
 
 # SOBRE O PROJETO
-Planum é um protótipo de plataforma semanal de gerenciamento de tarefas, desenvolvido com HTML, CSS e JavaScript. Ele reúne diferentes métodos de produtividade, dois calendários independentes (profissional e pessoal) e um assistente de IA que fornece respostas baseadas nas atividades cadastradas.
+Planum é um protótipo de plataforma de gerenciamento de tarefas, desenvolvido com HTML, CSS e JavaScript. Ele reúne diferentes métodos de produtividade, dois calendários independentes (profissional e pessoal) e um assistente de IA que fornece respostas baseadas nas atividades cadastradas.
 
 A interface foi desenvolvida com foco total em clareza e eficiência. É possível criar, editar, mover, reorganizar e concluir atividades utilizando drag and drop nativo. Cada elemento foi desenhado para favorecer a usabilidade: botões destacados, colunas diárias, modal de edição, marcações de conclusão e mensagens de conflito de horário. O chatbot interno acrescenta suporte interativo para consultas rápidas sobre sua agenda.
 
 O layout é totalmente responsivo, adaptando-se a qualquer tamanho de tela. No desktop, a sidebar é flexível e o calendário aparece em sete colunas completas; em dispositivos móveis, menus tornam-se retráteis, o calendário recebe scroll horizontal e os ícones assumem papel central na navegação. A paleta escura com acentos em azul reforça a identidade visual e mantém o contraste adequado em todas as resoluções.
 
-O objetivo principal do Planum é oferecer uma ferramenta simples para organização pessoal, permitindo que o usuário visualize rotinas, experimente diferentes métodos de gerenciamento de tempo e teste novas formas de lidar com suas atividades diárias. Não se trata de uma recomendação profissional ou validação certificada de métodos organizacionais — a plataforma apresenta sugestões visuais e operacionais, mas todas as decisões finais pertencem exclusivamente ao usuário.
+O objetivo principal do Planum é oferecer uma ferramenta simples para organização pessoal, permitindo que o usuário visualize rotinas, experimente diferentes métodos de gerenciamento de tempo e teste novas formas de lidar com suas atividades diárias.
 
 <br>
 
