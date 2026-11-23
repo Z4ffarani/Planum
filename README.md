@@ -1,4 +1,4 @@
-![Planum](./banner.png)
+![Planum](./assets/banner.png)
 
 **[Site](https://z4ffarani-planum.vercel.app) · [Publicação](https://www.linkedin.com/posts/kaique-zaffarani_html-css-javascript-activity-7398508664136962048-vZGE)**
 
